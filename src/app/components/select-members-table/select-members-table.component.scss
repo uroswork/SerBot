@@ -57,13 +57,13 @@
     border: 2px solid #fff;
     border-right: 0;
     border-left: 0;
-    height: 350px;
+    height: calc(100vh - 236px);
     overflow-y: scroll;
     @media (min-width: 768px) {
-        height: 400px;
+        height: calc(100vh - 255px);
     }
-    @media (min-width: 1024px) {
-        height: 480px;
+    @media (min-width: 1280px) {
+        height: calc(100vh - 380px);
     }
 }
 
@@ -82,6 +82,7 @@
         color: #fff;
         font-family: 'Open Sans';
         cursor: pointer;
+        z-index: 1;
     }
     button:last-child {
         margin-right: 0;
@@ -100,16 +101,14 @@
 }
 
 .Serbot-selectMembers-search {
-    display: flex;
     position: absolute;
     width: 100%;
     left: 0;
-    top: 70px;
-    justify-content: center;
+    top: 0;
     opacity: 0;
     transition: 0.3s ease-out all;
     @media (min-width: 768px) {
-        top: 50px;
+        top: 20px;
     }
 }
 
@@ -233,9 +232,21 @@
 
 .Serbot-selectMembers-searchInput {
     font-size: 20px;
-    border-radius: 6px;
     outline: 0;
     padding: 0;
     border: 0;
+    background-color: transparent;
     padding-left: 10px;
+    width: 90%;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+}
+
+.Serbot-selectMembers-searchDiv {
+    position: relative;
+    display: flex;
+    margin-bottom: 30px;
+    @media (min-width: 768px) {
+        margin-bottom: 0;
+    }
 }

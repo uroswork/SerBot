@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { SignUpComponent } from './components/signup/signup.component';
 import { SetUpProjectComponent } from './components/setup-project/setup-project.component';
+import { ProjectOverviewComponent } from './components/project-overview/project-overview.component'; 
 
 const routes: Routes = [
   { path: '', redirectTo: '/signUp', pathMatch: 'full' },
   { path: 'signUp', component: SignUpComponent },
-  { path: 'setup', component: SetUpProjectComponent }
+  { path: 'setup', component: SetUpProjectComponent },
+  { path: 'project', component: ProjectOverviewComponent },
 ]
  
 @NgModule({

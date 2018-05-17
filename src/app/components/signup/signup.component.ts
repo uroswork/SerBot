@@ -8,7 +8,7 @@ import { UserData } from '../../models/userData';
   styleUrls: ['./signup.component.scss']
 })
 export class SignUpComponent {
-  title: string = 'create an account';
+  title: string = 'create an account!';
   errorMessage: string = '';
   showError: boolean = false;
   titleAlternative: string = '';
@@ -49,7 +49,7 @@ export class SignUpComponent {
    */
   swapTitle(event) {
     if (event.inputNotEmpty === true) {
-      this.titleAlternative = event.value;
+      this.titleAlternative = `${ event.value }!`;
       if (!event.changeEvent) {
         this.shouldChangeTitle = true;
       }

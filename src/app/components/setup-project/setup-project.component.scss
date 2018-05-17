@@ -89,7 +89,10 @@
 .Serbot-setup-stepFive--paddingFix {
     padding: 20px;
     @media (min-width: 1024px) {
-        padding: 100px 100px 50px;
+        padding: 20px 100px;
+    }
+    @media (min-width: 1280px) {
+        padding: 50px 100px;
     }
 }
 
