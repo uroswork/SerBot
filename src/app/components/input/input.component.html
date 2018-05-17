@@ -1,0 +1,19 @@
+<div [ngClass]="{'Serbot-form-inputWrapper': true, 'Serbot-form-inputWrapper--fade': isFocused === false}">
+  <label 
+    for="{{ inputId }}" 
+    [ngClass]="{'Serbot-form-label': true, 'Serbot-form-label--translated': shouldTranslate === true, 'Serbot-form-label--invalid': isTouched && isValid === false}">
+      {{ label }}
+  </label>
+  <input
+    [(ngModel)]="data" 
+    (ngModelChange)="handleChange($event, inputId)"
+    (focus)="handleFocus($event)"
+    (blur)="handleBlur($event, inputId)"
+    id="{{ inputId }}"
+    maxlength="{{ inputId === 'firstName' && 15}}"
+    type="{{ type }}"
+    [ngClass]="{'Serbot-form-input': true,
+      'Serbot-form-input--invalid': isTouched && isValid === false,
+      'Serbot-form-input--valid': isValid === true}"
+  />
+</div>

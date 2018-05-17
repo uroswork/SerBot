@@ -1,0 +1,35 @@
+<div class="Serbot-setup">
+  <div [ngClass]="{'Serbot-setup-stepWrapper': true, 'Serbot-setup-stepOne': true, 'Serbot-setup-stepOne--translated': currentStep !== 1}">
+    <app-animated-text [currentStep]="currentStep" [shouldStart]="true" *ngFor="let text of textsToSend; let key = index" (checkIfFinished)="checkIfFinished($event)" [index]="key" [text]="text"></app-animated-text>
+  </div>
+  <div [ngClass]="{'Serbot-setup-stepWrapper': true, 'Serbot-setup-stepTwo': true, 'Serbot-setup-stepTwo--active': currentStep === 2, 'Serbot-setup-stepTwo--translated': currentStep > 2}">
+    <app-animated-text (checkIfFinished)="checkIfFinished($event)" [currentStep]="currentStep" [text]="stepTwoText" [shouldStart]="startStepTwo"></app-animated-text>
+    <div class="Serbot-setup-steps-input">
+        <input type='text' tabindex="{{ currentStep === 2 ? 0 : -1 }}" [(ngModel)]="stepTwoInput" (ngModelChange)="handleChange($event, 'projectName')" #projectName class="Serbot-setup-input" />
+    </div>
+  </div>
+  <div [ngClass]="{'Serbot-setup-stepWrapper': true, 'Serbot-setup-stepThree': true, 'Serbot-setup-stepThree--active': currentStep === 3, 'Serbot-setup-stepThree--translated': currentStep > 3}">
+      <app-animated-text (checkIfFinished)="checkIfFinished($event)" [currentStep]="currentStep" [text]="stepThreeText" [shouldStart]="startStepThree"></app-animated-text>
+      <div class="Serbot-setup-steps-input">
+          <input type='text' tabindex="{{ currentStep === 3 ? 0 : -1 }}" [(ngModel)]="stepThreeInput" (ngModelChange)="handleChange($event, 'projectType')" #projectType class="Serbot-setup-input" />
+      </div>
+  </div>
+  <div [ngClass]="{'Serbot-setup-stepWrapper': true, 'Serbot-setup-stepFour': true, 'Serbot-setup-stepFour--active': currentStep === 4, 'Serbot-setup-stepFour--translated': currentStep > 4}">
+      <app-animated-text (checkIfFinished)="checkIfFinished($event)" [currentStep]="currentStep" [text]="stepFourText" [shouldStart]="startStepFour"></app-animated-text>
+      <div class="Serbot-setup-steps-input">
+          <input type='text' tabindex="{{ currentStep === 4 ? 0 : -1 }}" [(ngModel)]="stepFourInput" (ngModelChange)="handleChange($event, 'projectDescription')" #projectDescription class="Serbot-setup-input" />
+      </div>
+  </div>
+  <div [ngClass]="{'Serbot-setup-stepWrapper': true, 'Serbot-setup-stepFive': true, 'Serbot-setup-stepFive--active': currentStep === 5}">
+      <app-error-handler [showError]="showError" [errorMessage]="errorMessage"></app-error-handler>
+      <div class="Serbot-setup-stepFive--paddingFix">
+        <app-animated-text (checkIfFinished)="checkIfFinished($event)" [currentStep]="currentStep" [text]="stepFiveText" [shouldStart]="startStepFive"></app-animated-text>
+      </div>
+      <div [ngClass]="{'Serbot-setup-tableHidden': true, 'Serbot-setup-table': showTable}">
+        <app-select-members-table (handleErrors)=(handleErrors($event)) [allowTabbing]="currentStep === 5"></app-select-members-table>
+      </div>
+  </div>
+  <button [disabled]="disableCTA" tabindex="{{ showCTA ? 0 : -1 }}" (click)="handleClick($event)" [ngClass]="{'Serbot-CTA': true, 'Serbot-CTA--visible': showCTA}">
+    <img class="Serbot-setup-image" src="../assets/images/arrow.png" />
+  </button>
+</div>

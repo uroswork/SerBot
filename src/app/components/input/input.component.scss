@@ -1,0 +1,47 @@
+.Serbot-form-inputWrapper {
+    position: relative;
+    display: flex;
+    margin-bottom: 15px;
+    height: 70px;
+    transition: opacity ease-out .3s;
+}
+
+.Serbot-form-inputWrapper--fade {
+    opacity: 0.5;
+}
+
+.Serbot-form-label {
+    position: absolute;
+    left: 10px;
+    height: 70px;
+    line-height: 100px;
+    transform-origin: left;
+    bottom: 10px;
+    width: 100%;
+    font-size: 30px;
+    transition: transform ease-out .1s;
+    pointer-events: none;
+}
+
+.Serbot-form-label--translated {
+    transform: scale(0.64) translateY(-40px);
+}
+
+.Serbot-form-input {
+    width: 100%;
+    font-size: 30px;
+    padding: 15px 0 5px 10px;
+    border: 0;
+    border-bottom: 1px solid gray;
+    &:hover, &:focus {
+        outline: none;
+    }
+}
+
+.Serbot-form-input--invalid {
+    border-color: #fd8c8f;
+}
+
+.Serbot-form-label--invalid {
+    color: #fd8c8f;
+}

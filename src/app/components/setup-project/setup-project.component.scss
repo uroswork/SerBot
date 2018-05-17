@@ -1,0 +1,128 @@
+.Serbot-setup {
+    position: relative;
+    color: #fff;
+    background-color: #fc363b;
+    font-size: 50px;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.Serbot-CTA {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    bottom: -50px;
+    right: 20px;
+    opacity: 0;
+    transition: 1s all, opacity 2s;
+    cursor: pointer;
+    &:focus, &:active {
+        outline: none;
+    }
+    @media (min-width: 768px) {
+        right: 30px;   
+    }
+}
+
+.Serbot-CTA--visible {
+    bottom: 20px;
+    opacity: 1;
+    @media (min-width: 768px) {
+        bottom: 30px;
+    }
+}
+
+.Serbot-setup-image {
+    width: 50px;
+    @media (min-width: 768px) {
+        width: 80px;
+    }
+    @media (min-width: 1280px) {
+        width: 100%;
+    }
+}
+
+.Serbot-setup-stepWrapper {
+    position: relative;
+    height: 100%;
+    padding: 20px;
+    width: 100%;
+    transition: .5s ease-out transform;
+    @media (min-width: 768px) {
+        padding: 100px 30px;
+    }
+}
+
+.Serbot-setup-stepOne--translated {
+    transform: translateX(100%);
+}
+
+.Serbot-setup-stepTwo--active {
+    transform: translateY(-100%);
+}
+
+.Serbot-setup-stepTwo--translated {
+    transform: translate(100%, -100%);
+}
+
+.Serbot-setup-stepThree--active {
+    transform: translateY(-200%);
+}
+
+.Serbot-setup-stepThree--translated {
+    transform: translate(100%, -200%);
+}
+
+.Serbot-setup-stepFour--active {
+    transform: translateY(-300%);
+}
+
+.Serbot-setup-stepFour--translated {
+    transform: translate(100%, -300%);
+}
+
+.Serbot-setup-stepFive--active {
+    transform: translateY(-400%);
+    padding: 0;
+}
+
+.Serbot-setup-stepFive--paddingFix {
+    padding: 20px;
+    @media (min-width: 1024px) {
+        padding: 100px 100px 50px;
+    }
+}
+
+.Serbot-setup-steps-input {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    padding: 0 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 1;
+}
+
+.Serbot-setup-input {
+    width: 100%;
+    background: 0;
+    border: 0;
+    outline: 0;
+    font-size: 20px;
+    font-family: 'Open Sans';
+    color: #fff;
+    text-align: center;
+    @media (min-width: 768px) {
+        font-size: 40px;
+    }
+}
+
+.Serbot-setup-tableHidden {
+    width: 100%;
+    opacity: 0;
+    transition: 1s ease-out opacity;
+}
+
+.Serbot-setup-table {
+    opacity: 1;
+}
