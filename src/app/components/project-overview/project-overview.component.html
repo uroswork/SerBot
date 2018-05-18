@@ -1,3 +1,54 @@
-<p>
-  project-overview works!
-</p>
+<div class="ProjectOverview">
+  <div *ngIf="projects.length > 1" class="ProjectNumbers">
+    <span>1</span>
+    <span class="ProjectNumbers-length">/ {{ projects.length }}</span>
+  </div>
+  <div class="Project-wrapper">
+    <div class="Project-top">
+      <div class="Project-main">
+        <h1 class="Project-title">{{ projects[0].name }}</h1>
+        <span class="Project-type">{{ projects[0].type }}</span>
+        <p class="Project-description">{{ projects[0].description }}</p>
+      </div>
+      <div class="Project-data">
+        <div class="Project-chart">
+          <div class="Project-chartDiv">
+            <svg class="Project-chartSvg">
+              <circle  [ngStyle]="{'stroke-dashoffset': updateSvg && offset, 'transform-origin': updateSvg && '50% 50%' }" stroke-width="4" stroke="#daf36a" fill="transparent" r="148" cx="150" cy="150" class="Project-chartSvgCircle" />
+            </svg>
+              <span class="Project-chart-percentage--number">
+                  {{ getNumberOfPercentageString(projects[0].chartPercentage) }}
+                  <span class="Project-chart-percentage--symbol">%</span>
+                </span>
+                <p class="Project-text">{{ projects[0].chartText }}</p>
+          </div>
+        </div>
+        <div class="Project-numbers">
+          <div class="Project-number" *ngFor="let number of projects[0].numbersInfo">
+            <span [ngClass]="{'Project-number-title': true, 'Project-number---upperCased': !number.text, 'Project-number-of--translated': updateSvg}">{{ number.title }}</span>
+            <span *ngIf="number.rating" class="Project-number-the">
+              <img class="Project-numbers-image" src="{{ number.image === 'chat' ? '../../../assets/images/chatBubble.png' : '../../../assets/images/chart.png'}}" />
+              {{ splitRating(number.rating).the }}
+              <span [ngClass]="{'Project-number-of': true, 'Project-number-of--translated': updateSvg }">{{ splitRating(number.rating).of }}</span>
+            </span>
+            <span *ngIf="number.number" class="Project-number-number">{{ number.number }}
+              <img class="Project-numbers-image" src="{{ number.image === 'chat' ? '../../../assets/images/chatBubble.png' : '../../../assets/images/chart.png'}}" />
+            </span>
+            <span *ngIf="number.text" class="Project-text">{{ number.text }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="Project-bottom">
+        <div class="Project-slider">
+          <div class="Project-category" *ngFor="let category of projects[0].categoriesRatings">
+            <h2 class="Project-category-title">{{ category.title }}</h2>
+            <div class="Project-category-info">
+              <span class="Project-category-rating">{{ category.rating }}</span>
+              <img class="Project-category-image" src="../../../assets/images/check.png" *ngIf="category.isCompleted" />
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

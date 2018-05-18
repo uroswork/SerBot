@@ -23,7 +23,7 @@
     <div class="Serbot-selectMembers-searchDiv">
         <button tabindex="{{ allowTabbing ? 0 : -1 }}" (click)="handleSearchClick()">Search for a member</button>
         <div [ngClass]="{'Serbot-selectMembers-search': true, 'Serbot-selectMembers-searchVisible': searchVisible}">
-            <input tabindex="{{ allowTabbing ? 0 : -1 }}" type='text' [(ngModel)]="searchMembers" (ngModelChange)="handleChange($event)" #searchInput class="Serbot-selectMembers-searchInput" />
+            <input #searchForAMember tabindex="{{ allowTabbing ? 0 : -1 }}" type='text' [(ngModel)]="searchMembers" (ngModelChange)="handleChange($event)" #searchInput class="Serbot-selectMembers-searchInput" />
         </div>
     </div>
     <button tabindex="{{ allowTabbing ? 0 : -1 }}" (click)="handleAddNewClick()">Add new member</button>

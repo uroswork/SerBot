@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 
 import { FormValidator } from '../../utils/formValidator';
 
@@ -10,6 +10,7 @@ import { FormValidator } from '../../utils/formValidator';
 export class SelectMembersTableComponent {
   @Input() allowTabbing: boolean;
   @Output() handleErrors: EventEmitter<object> = new EventEmitter<object>();
+  @ViewChild('searchForAMember') searchForAMember: ElementRef;
   searchVisible: boolean = false;
   showNoResults: boolean = false;
   addNameValid: boolean = false;
@@ -115,6 +116,9 @@ export class SelectMembersTableComponent {
    */
   handleSearchClick() {
     this.searchVisible = !this.searchVisible;
+    if (!this.searchVisible) {
+      this.searchForAMember.nativeElement.focus();
+    }
   }
 
   /**

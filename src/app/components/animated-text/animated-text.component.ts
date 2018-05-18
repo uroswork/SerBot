@@ -41,7 +41,7 @@ export class AnimatedTextComponent implements OnInit, OnChanges {
           this.checkIfFinished.emit({index: this.index, finished: true});
           clearInterval(interval);
         }
-      }, 25);
+      }, 30);
     }
   }
 }

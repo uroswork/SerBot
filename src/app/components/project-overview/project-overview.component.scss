@@ -1,0 +1,240 @@
+.ProjectOverview {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.Project-wrapper {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+    background: rgb(142,206,131);
+    background: linear-gradient(90deg, rgba(142,206,131,1) 0%, rgba(142,206,131,1) 50%, rgba(34,156,128,1) 100%);
+}
+
+.Project-top {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    padding: 100px;
+}
+
+.Project-bottom {
+}
+
+.Project-main {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 48%;
+}
+
+.Project-data {
+    flex-basis: 48%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.Project-title {
+    font-size: 48px;
+    margin: 0 0 10px 0;
+}
+
+.Project-type {
+    font-size: 22px;
+    margin-bottom: 30px;
+    opacity: 0.8;
+    transition: .3s ease-in opacity;
+    &:hover {
+        opacity: 0.9;
+    }
+}
+
+.Project-description {
+    font-size: 22px;
+    opacity: 0.8;
+    transition: .3s ease-in opacity;
+    &:hover {
+        opacity: 0.9;
+    }
+}
+
+.Project-chart {
+}
+
+.Project-chartDiv {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 2px #5ba980;
+    display: flex;
+    vertical-align: middle;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Project-chart-percentage--number {
+    position: relative;
+    font-size: 72px;
+    line-height: 72px;
+    font-weight: bold;
+}
+
+.Project-chart-percentage--symbol {
+    position: absolute;
+    right: -20px;
+    top: 8px;
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.Project-text {
+    font-size: 20px;
+    font-weight: bold;
+    opacity: 0.8;
+    transition: .3s ease-in opacity;
+    &:hover {
+        opacity: 0.9;
+    }
+}
+
+.Project-bottom {
+}
+
+.Project-slider {
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+
+.Project-category {
+    width: 350px;
+    height: 400px;
+    display: inline-block;
+    padding: 50px 40px;
+    border-right: 1px solid rgba(0,0,0, 0.3);
+    background-color: rgba(255,255,255, 0.1);
+    transition: .35s ease-out background-color;
+    &:hover {
+        background-color: rgba(255,255,255, 0.3);
+    }
+}
+
+.Project-category-title {
+    text-transform: uppercase;
+    font-size: 20px;
+    margin: 0 0 15px 0;
+}
+
+.Project-category-rating {
+    font-size: 26px;
+}
+
+.Project-chartSvg {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+}
+
+.Project-chartSvgCircle {
+    transition: .5s stroke-dashoffset;
+    transform: rotate(-90deg);
+    stroke-dasharray: calc(148 * 2 * 3.14) calc(148 * 2 * 3.14); // radius * 2 * pi
+    stroke-dashoffset: 892.212;
+}
+
+.Project-numbers {
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Project-numbers-image {
+    position: absolute;
+    left: -30px;
+    bottom: 3px;
+    width: 20px;
+}
+
+.Project-number {
+    display: flex;
+    flex-direction: column;
+    font-size: 22px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    align-items: flex-start;
+    &:last-child {
+        border-top: 2px solid #47ac8c;
+        padding-top: 30px;
+    }
+}
+
+.Project-number-the {
+    font-size: 72px;
+    position: relative;
+    line-height: 72px;
+    font-weight: bold;
+}
+
+.Project-number-of {
+    position: absolute;
+    left: 105%;
+    top: 8px;
+    font-size: 24px;
+    line-height: 24px;
+    white-space: nowrap;
+    transition: .5s ease-out color;
+}
+
+.Project-number-of--translated {
+    color: #daf36a;
+}
+
+.Project-number-number {
+    position: relative;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 48px;
+    white-space: nowrap;
+    margin-bottom: 10px;
+}
+
+.Project-number-title {
+    margin-bottom: 10px;
+    transition: .5s ease-out color;
+}
+
+.Project-number-title--transformed {
+    color: #daf36a;
+}
+
+.Project-number---upperCased {
+    text-transform: uppercase;
+}
+
+.ProjectNumbers {
+    position: absolute;
+    top: 60px;
+    left: 100px;
+    font-size: 22px;
+    color: #fff;
+}
+
+.ProjectNumbers-length {
+    color: #daf36a;
+}
+
+.Project-category-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.Project-category-image {
+    width: 20px;
+    margin-left: 20px;
+}
