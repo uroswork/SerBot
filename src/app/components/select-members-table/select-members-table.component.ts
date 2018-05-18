@@ -11,6 +11,7 @@ export class SelectMembersTableComponent {
   @Input() allowTabbing: boolean;
   @Output() handleErrors: EventEmitter<object> = new EventEmitter<object>();
   @ViewChild('searchForAMember') searchForAMember: ElementRef;
+  searchForAMemberMobile: string;
   searchVisible: boolean = false;
   showNoResults: boolean = false;
   addNameValid: boolean = false;
@@ -119,6 +120,11 @@ export class SelectMembersTableComponent {
     if (!this.searchVisible) {
       this.searchForAMember.nativeElement.focus();
     }
+  }
+
+  handleCloseSearch() {
+    this.searchVisible = false;
+    this.isFiltering = false;
   }
 
   /**

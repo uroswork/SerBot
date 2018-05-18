@@ -101,6 +101,7 @@
 }
 
 .Serbot-selectMembers-search {
+    display: none;
     position: absolute;
     width: 100%;
     left: 0;
@@ -109,6 +110,7 @@
     transition: 0.3s ease-out all;
     @media (min-width: 768px) {
         top: 20px;
+        display: block;
     }
 }
 
@@ -199,8 +201,8 @@
     border: 0;
     border-bottom: 1px solid #fff;
     color: #fff;
-    padding: 0 0 10px 10px;
-    margin-bottom: 20px;
+    padding: 0 0 15px 10px;
+    margin-bottom: 30px;
     font-size: 20px;
     &::placeholder {
         color: white;
@@ -211,6 +213,30 @@
     @media (min-width: 1024px) {
         font-size: 40px;
     }
+}
+
+.Serbot-selectMembers-add-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+}
+
+.Serbot-selectMembers-searchInputMobile {
+    border: 0;
+    background-color: transparent;
+    border-bottom: 1px solid #fff;
+    width: 300px;
+    color: #fff;
+    font-size: 25px;
+    padding-bottom: 5px;
+}
+
+.Serbot-selectMembers-add-close {
+    width: 30px;
 }
 
 .Serbot-CTA {
@@ -231,12 +257,11 @@
 }
 
 .Serbot-selectMembers-searchInput {
-    font-size: 20px;
+    font-size: 24px;
     outline: 0;
-    padding: 0;
     border: 0;
     background-color: transparent;
-    padding-left: 10px;
+    padding: 0 0 10px 10px;
     width: 90%;
     border-bottom: 1px solid #fff;
     color: #fff;
@@ -249,4 +274,25 @@
     @media (min-width: 768px) {
         margin-bottom: 0;
     }
+}
+
+.Serbot-selectMembers-searchMobile {
+    position: absolute;
+    background-color: #fc363b;
+    bottom: -100%;
+    left: 0;
+    height: 30vh;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s ease-out bottom;
+    @media (min-width: 768px) {
+        display: none;
+    }
+}
+
+.Serbot-selectMembers-searchMobile--visible {
+    bottom: 0;
 }

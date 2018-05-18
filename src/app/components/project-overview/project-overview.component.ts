@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class ProjectOverviewComponent implements OnInit {
   updateSvg: boolean = false;
   offset: number;
-  projects: Array<object> = [
+  startNumber: number = 0;
+  projects: Array<any> = [ // IT SHOULDN'T BE ANY - CREATE MODEL§
     {
       name: 'Google',
       type: 'Information Technology',
@@ -30,7 +31,7 @@ export class ProjectOverviewComponent implements OnInit {
       ],
       categoriesRatings: [
         {
-          title: 'Numberes of gossip',
+          title: 'Numbers of gossip',
           rating: '4.3',
           isCompleted: true,
         },
@@ -134,11 +135,16 @@ export class ProjectOverviewComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.changeSvg();
-    }, 1000);
+      this.countToNumber(this.getNumberOfPercentageString(this.projects[0].chartPercentage));
+    }, 300);
   }
 
   changeSvg() {
-    const circumference = 148 * 2 * Math.PI;
+    let radius = 128;
+    if (window.innerWidth >= 768) {
+      radius = 148;
+    }
+    const circumference = radius * 2 * Math.PI;
     const number = this.getNumberOfPercentageString(this.projects[0].chartPercentage);
     this.offset = circumference - number / 100 * circumference;
     this.updateSvg = true;
@@ -156,5 +162,15 @@ export class ProjectOverviewComponent implements OnInit {
       of: string.substring(dashIndex, string.length)
     }
     return rating;
+  }
+
+  countToNumber(number) {
+    const time = 1000 / number;
+    const interval = setInterval(() => {
+      this.startNumber += 1;
+      if (number == this.startNumber) {
+        clearInterval(interval);
+      }
+    }, time);
   }
 }

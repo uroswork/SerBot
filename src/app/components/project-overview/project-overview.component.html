@@ -14,10 +14,14 @@
         <div class="Project-chart">
           <div class="Project-chartDiv">
             <svg class="Project-chartSvg">
-              <circle  [ngStyle]="{'stroke-dashoffset': updateSvg && offset, 'transform-origin': updateSvg && '50% 50%' }" stroke-width="4" stroke="#daf36a" fill="transparent" r="148" cx="150" cy="150" class="Project-chartSvgCircle" />
+              <circle [ngStyle]="{'stroke-dashoffset': updateSvg && offset, 'transform-origin': updateSvg && '50% 50%' }" stroke-width="4" stroke="#daf36a" fill="transparent" r="148" cx="150" cy="150" class="Project-chartSvgCircle" />
+            </svg>
+            <svg class="Project-chartSvg--mobile">
+              <circle [ngStyle]="{'stroke-dashoffset': updateSvg && offset, 'transform-origin': updateSvg && '50% 50%' }" stroke-width="4" stroke="#daf36a" fill="transparent" r="128" cx="130" cy="130" class="Project-chartSvgCircle" />
             </svg>
               <span class="Project-chart-percentage--number">
-                  {{ getNumberOfPercentageString(projects[0].chartPercentage) }}
+                  <!-- {{ countToNumber(getNumberOfPercentageString(projects[0].chartPercentage)) }} -->
+                  {{ startNumber }}
                   <span class="Project-chart-percentage--symbol">%</span>
                 </span>
                 <p class="Project-text">{{ projects[0].chartText }}</p>

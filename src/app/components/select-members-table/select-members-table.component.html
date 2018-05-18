@@ -23,15 +23,25 @@
     <div class="Serbot-selectMembers-searchDiv">
         <button tabindex="{{ allowTabbing ? 0 : -1 }}" (click)="handleSearchClick()">Search for a member</button>
         <div [ngClass]="{'Serbot-selectMembers-search': true, 'Serbot-selectMembers-searchVisible': searchVisible}">
-            <input #searchForAMember tabindex="{{ allowTabbing ? 0 : -1 }}" type='text' [(ngModel)]="searchMembers" (ngModelChange)="handleChange($event)" #searchInput class="Serbot-selectMembers-searchInput" />
+            <input #searchForAMember tabindex="{{ allowTabbing ? 0 : -1 }}" type='text' [(ngModel)]="searchMembers" (ngModelChange)="handleChange($event)" class="Serbot-selectMembers-searchInput" />
         </div>
     </div>
     <button tabindex="{{ allowTabbing ? 0 : -1 }}" (click)="handleAddNewClick()">Add new member</button>
   </div>
+  <div [ngClass]="{'Serbot-selectMembers-searchMobile': true, 'Serbot-selectMembers-searchMobile--visible': searchVisible}">
+    <div class="Serbot-selectMembers-searchMobileDiv">
+        <input #searchForAMemberMobile tabindex="{{ allowTabbing ? 0 : -1 }}" type='text' [(ngModel)]="searchMembersMobile" (ngModelChange)="handleChange($event)" class="Serbot-selectMembers-searchInputMobile" />
+        <button class="Serbot-selectMembers-add-button" (click)="handleCloseSearch($event)">
+          <img class="Serbot-selectMembers-add-close" src="../../../assets/images/close.png" />
+        </button>
+    </div>
+  </div>
   <div [ngClass]="{'Serbot-selectMembers-add': true, 'Serbot-selectMembers-add--visible': showAddNewMember}">
       <div class="Serbot-selectMembers-add-topDiv">
         <p>Add new member</p>
-        <button tabindex="{{ allowTabbing && showAddNewMember ? 0 : -1 }}" (click)="handleCloseClick($event)">X</button>
+        <button class="Serbot-selectMembers-add-button" tabindex="{{ allowTabbing && showAddNewMember ? 0 : -1 }}" (click)="handleCloseClick($event)">
+          <img class="Serbot-selectMembers-add-close" src="../../../assets/images/close.png" />
+        </button>
       </div>
       <div class="Serbot-selectMembers-add-inputs">
         <input tabindex="{{ allowTabbing && showAddNewMember ? 0 : -1 }}" type='text' [(ngModel)]="firstNamelastNameValue" (blur)="handleOnBlur($event, 'firstNameLastName')" placeholder="First Name Last Name" #firstLastNameAdd class="Serbot-selectMembers-add-input" />
@@ -39,7 +49,7 @@
         <input tabindex="{{ allowTabbing && showAddNewMember ? 0 : -1 }}" type='text' [(ngModel)]="titleValue" (blur)="handleOnBlur($event, 'titleAdd')" placeholder="Title" #titleAdd class="Serbot-selectMembers-add-input" />
       </div>
       <button tabindex="{{ allowTabbing && showAddNewMember && showCTA ? 0 : -1 }}" (click)="handleCtaClick($event)" class="Serbot-CTA">
-        <img class="Serbot-setup-image" src="../assets/images/arrow.png" />
+        <app-arrow></app-arrow>
       </button>
     </div>
 </div>

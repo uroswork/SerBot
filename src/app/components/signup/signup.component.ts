@@ -44,12 +44,12 @@ export class SignUpComponent {
   }
 
   /**
-   * Swapping 'create an account' with user's first name, once user submits first name.
+   * Swapping   'create an account' with user's first name, once user submits first name.
    * @param event (inputs length, and event calling this function)
    */
   swapTitle(event) {
     if (event.inputNotEmpty === true) {
-      this.titleAlternative = `${ event.value }!`;
+      this.titleAlternative = `${ event.value.trim()}!`;
       if (!event.changeEvent) {
         this.shouldChangeTitle = true;
       }

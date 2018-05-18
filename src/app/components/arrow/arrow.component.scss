@@ -1,0 +1,9 @@
+.Serbot-arrow {
+    width: 50px;
+    @media (min-width: 768px) {
+        width: 80px;
+    }
+    @media (min-width: 1024px) {
+        width: 100px;
+    }
+}

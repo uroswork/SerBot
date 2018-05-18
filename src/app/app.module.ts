@@ -13,6 +13,7 @@ import { SetUpProjectComponent } from './components/setup-project/setup-project.
 import { AnimatedTextComponent } from './components/animated-text/animated-text.component';
 import { SelectMembersTableComponent } from './components/select-members-table/select-members-table.component';
 import { ProjectOverviewComponent } from './components/project-overview/project-overview.component';
+import { ArrowComponent } from './components/arrow/arrow.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { ProjectOverviewComponent } from './components/project-overview/project-
     AnimatedTextComponent,
     SelectMembersTableComponent,
     ProjectOverviewComponent,
+    ArrowComponent,
   ],
   imports: [
     BrowserModule,

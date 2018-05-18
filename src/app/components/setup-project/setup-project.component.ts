@@ -15,7 +15,7 @@ export class SetUpProjectComponent {
   ]
   stepTwoText: string = 'Okay, first things first, start typing the project name please.';
   stepThreeText: string = 'Cool, what about project type?';
-  stepFourText: string = 'Aaaand..project description?';
+  stepFourText: string = 'Aaaand... project description?';
   stepFiveText: string = 'Who else is working with you?';
   startStepTwo: boolean = false;
   startStepThree: boolean = false;

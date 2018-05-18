@@ -30,6 +30,6 @@
       </div>
   </div>
   <button [disabled]="disableCTA" tabindex="{{ showCTA ? 0 : -1 }}" (click)="handleClick($event)" [ngClass]="{'Serbot-CTA': true, 'Serbot-CTA--visible': showCTA}">
-    <img class="Serbot-setup-image" src="../assets/images/arrow.png" />
+    <app-arrow></app-arrow>
   </button>
 </div>
