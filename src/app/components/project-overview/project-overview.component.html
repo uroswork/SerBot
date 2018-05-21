@@ -1,34 +1,40 @@
-<div class="ProjectOverview">
-  <div *ngIf="projects.length > 1" class="ProjectNumbers">
-    <span>1</span>
-    <span class="ProjectNumbers-length">/ {{ projects.length }}</span>
-  </div>
-  <div class="Project-wrapper">
+<div [ngClass]="{'ProjectOverview': true, 'ProjectOverview--switching': isSwitchingBetweenProjects}">
+  <div [ngClass]="{
+    'Project-wrapper': true,
+    'Project-wrapper--good': getNumberOfPercentageString(projects[activeProject].chartPercentage) >= 80,
+    'Project-wrapper--medium': getNumberOfPercentageString(projects[activeProject].chartPercentage) >= 40 && getNumberOfPercentageString(projects[activeProject].chartPercentage) <= 60,
+    'Project-wrapper--bad': getNumberOfPercentageString(projects[activeProject].chartPercentage) < 40}
+  ">
+    <div *ngIf="projects.length > 1" class="ProjectNumbers">
+      <button [disabled]="isSwitchingBetweenProjects" (click)="handleProjectChange('minus')" *ngIf="activeProject + 1 > 1" class="ProjectNumbers-button">previous project</button>
+      <span>{{ activeProject + 1 }}</span>
+      <span class="ProjectNumbers-length">/ {{ projects.length }}</span>
+      <button [disabled]="isSwitchingBetweenProjects" (click)="handleProjectChange('plus')" *ngIf="activeProject + 1 !== projects.length" class="ProjectNumbers-button">next project</button>
+    </div>
     <div class="Project-top">
       <div class="Project-main">
-        <h1 class="Project-title">{{ projects[0].name }}</h1>
-        <span class="Project-type">{{ projects[0].type }}</span>
-        <p class="Project-description">{{ projects[0].description }}</p>
+        <h1 class="Project-title">{{ projects[activeProject].name }}</h1>
+        <span class="Project-type">{{ projects[activeProject].type }}</span>
+        <p class="Project-description">{{ projects[activeProject].description }}</p>
       </div>
       <div class="Project-data">
         <div class="Project-chart">
           <div class="Project-chartDiv">
             <svg class="Project-chartSvg">
-              <circle [ngStyle]="{'stroke-dashoffset': updateSvg && offset, 'transform-origin': updateSvg && '50% 50%' }" stroke-width="4" stroke="#daf36a" fill="transparent" r="148" cx="150" cy="150" class="Project-chartSvgCircle" />
+              <circle [ngStyle]="{'stroke-dashoffset': updateSvg && offset, 'transform-origin': updateSvg && '50% 50%' }" stroke-width="4" fill="transparent" r="148" cx="150" cy="150" class="Project-chartSvgCircle" />
             </svg>
             <svg class="Project-chartSvg--mobile">
-              <circle [ngStyle]="{'stroke-dashoffset': updateSvg && offset, 'transform-origin': updateSvg && '50% 50%' }" stroke-width="4" stroke="#daf36a" fill="transparent" r="128" cx="130" cy="130" class="Project-chartSvgCircle" />
+              <circle [ngStyle]="{'stroke-dashoffset': updateSvg && offset, 'transform-origin': updateSvg && '50% 50%' }" stroke-width="4" fill="transparent" r="128" cx="130" cy="130" class="Project-chartSvgCircle" />
             </svg>
               <span class="Project-chart-percentage--number">
-                  <!-- {{ countToNumber(getNumberOfPercentageString(projects[0].chartPercentage)) }} -->
                   {{ startNumber }}
                   <span class="Project-chart-percentage--symbol">%</span>
                 </span>
-                <p class="Project-text">{{ projects[0].chartText }}</p>
+                <p class="Project-text">{{ projects[activeProject].chartText }}</p>
           </div>
         </div>
         <div class="Project-numbers">
-          <div class="Project-number" *ngFor="let number of projects[0].numbersInfo">
+          <div class="Project-number" *ngFor="let number of projects[activeProject].numbersInfo">
             <span [ngClass]="{'Project-number-title': true, 'Project-number---upperCased': !number.text, 'Project-number-of--translated': updateSvg}">{{ number.title }}</span>
             <span *ngIf="number.rating" class="Project-number-the">
               <img class="Project-numbers-image" src="{{ number.image === 'chat' ? '../../../assets/images/chatBubble.png' : '../../../assets/images/chart.png'}}" />
@@ -45,7 +51,7 @@
     </div>
     <div class="Project-bottom">
         <div class="Project-slider">
-          <div class="Project-category" *ngFor="let category of projects[0].categoriesRatings">
+          <div class="Project-category" *ngFor="let category of projects[activeProject].categoriesRatings">
             <h2 class="Project-category-title">{{ category.title }}</h2>
             <div class="Project-category-info">
               <span class="Project-category-rating">{{ category.rating }}</span>
