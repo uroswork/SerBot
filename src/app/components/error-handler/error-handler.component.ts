@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class ErrorHandlerComponent {
   @Input() showError: boolean;
   @Input() errorMessage: string;
+  @Input() isInverted: boolean;
 }

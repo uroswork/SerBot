@@ -21,7 +21,7 @@
       </div>
   </div>
   <div [ngClass]="{'Serbot-setup-stepWrapper': true, 'Serbot-setup-stepFive': true, 'Serbot-setup-stepFive--active': currentStep === 5}">
-      <app-error-handler [showError]="showError" [errorMessage]="errorMessage"></app-error-handler>
+      <app-error-handler [isInverted]="true" [showError]="showError" [errorMessage]="errorMessage"></app-error-handler>
       <div class="Serbot-setup-stepFive--paddingFix">
         <app-animated-text (checkIfFinished)="checkIfFinished($event)" [currentStep]="currentStep" [text]="stepFiveText" [shouldStart]="startStepFive"></app-animated-text>
       </div>
