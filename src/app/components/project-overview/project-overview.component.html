@@ -6,10 +6,22 @@
     'Project-wrapper--bad': getNumberOfPercentageString(projects[activeProject].chartPercentage) < 40}
   ">
     <div *ngIf="projects.length > 1" class="ProjectNumbers">
-      <button [disabled]="isSwitchingBetweenProjects" (click)="handleProjectChange('minus')" *ngIf="activeProject + 1 > 1" class="ProjectNumbers-button">previous project</button>
+      <button 
+        [disabled]="isSwitchingBetweenProjects" 
+        (click)="handleProjectChange('minus')" 
+        *ngIf="activeProject + 1 > 1" 
+        class="ProjectNumbers-button"
+      >view {{ projects[activeProject + -1].name }}
+      </button>
       <span>{{ activeProject + 1 }}</span>
       <span class="ProjectNumbers-length">/ {{ projects.length }}</span>
-      <button [disabled]="isSwitchingBetweenProjects" (click)="handleProjectChange('plus')" *ngIf="activeProject + 1 !== projects.length" class="ProjectNumbers-button">next project</button>
+      <button 
+        [disabled]="isSwitchingBetweenProjects" 
+        (click)="handleProjectChange('plus')" 
+        *ngIf="activeProject + 1 !== projects.length" 
+        class="ProjectNumbers-button"
+      >view {{ projects[activeProject + 1].name }}
+      </button>
     </div>
     <div class="Project-top">
       <div class="Project-main">
@@ -21,10 +33,10 @@
         <div class="Project-chart">
           <div class="Project-chartDiv">
             <svg class="Project-chartSvg">
-              <circle [ngStyle]="{'stroke-dashoffset': updateSvg && offset, 'transform-origin': updateSvg && '50% 50%' }" stroke-width="4" fill="transparent" r="148" cx="150" cy="150" class="Project-chartSvgCircle" />
+              <circle [ngStyle]="{'stroke-dashoffset': !isSwitchingBetweenProjects && updateSvg ? offset : 929, 'transform-origin': updateSvg && '50% 50%' }" stroke-width="4" fill="transparent" r="148" cx="150" cy="150" class="Project-chartSvgCircle" />
             </svg>
             <svg class="Project-chartSvg--mobile">
-              <circle [ngStyle]="{'stroke-dashoffset': updateSvg && offset, 'transform-origin': updateSvg && '50% 50%' }" stroke-width="4" fill="transparent" r="128" cx="130" cy="130" class="Project-chartSvgCircle" />
+              <circle [ngStyle]="{'stroke-dashoffset': !isSwitchingBetweenProjects && updateSvg ? offset : 929, 'transform-origin': updateSvg && '50% 50%' }" stroke-width="4" fill="transparent" r="128" cx="130" cy="130" class="Project-chartSvgCircle" />
             </svg>
               <span class="Project-chart-percentage--number">
                   {{ startNumber }}

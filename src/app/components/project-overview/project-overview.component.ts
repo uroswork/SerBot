@@ -80,12 +80,12 @@ export class ProjectOverviewComponent implements OnInit {
       numbersInfo: [
         {
           title: 'Overall rating',
-          image: 'chat',
+          image: 'chart',
           rating: '3.2 / 10',
         },
         {
           title: 'Based on',
-          image: 'chart',
+          image: 'chat',
           number: '400',
           text: 'reviews',
         }
