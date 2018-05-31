@@ -11,7 +11,7 @@
         (click)="handleProjectChange('minus')" 
         *ngIf="activeProject + 1 > 1" 
         class="ProjectNumbers-button"
-      >view {{ projects[activeProject + -1].name }}
+      >view {{ projects[activeProject -1].name }}
       </button>
       <span>{{ activeProject + 1 }}</span>
       <span class="ProjectNumbers-length">/ {{ projects.length }}</span>
