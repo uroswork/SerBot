@@ -12,17 +12,15 @@ export class InputComponent {
   @Input() label: string;
   @Input() inputId: string;
 
-  @Output()
-  checkIfValid: EventEmitter<object> = new EventEmitter<object>();
-  @Output()
-  swapTitle: EventEmitter<object> = new EventEmitter<object>();
+  @Output() checkIfValid: EventEmitter<object> = new EventEmitter<object>();
+  @Output() swapTitle: EventEmitter<object> = new EventEmitter<object>();
 
   shouldTranslate: boolean = false;
   isFocused: boolean = false;
   isValid: boolean = false;
   isTouched: boolean = false;
 
-  constructor(private formValidator: FormValidator) {}
+  constructor(private formValidator: FormValidator) { }
 
   /**
    * input onChange event
@@ -41,18 +39,22 @@ export class InputComponent {
 
     if (id === 'firstName') {
       if (inputValue.length > 0) {
-        this.swapTitle.emit({inputNotEmpty: true, value: inputValue, changeEvent: true});
+        this.swapTitle.emit({ inputNotEmpty: true, value: inputValue, changeEvent: true });
       } else {
-        this.swapTitle.emit({inputNotEmpty: false, value: inputValue, changeEvent: true});
+        this.swapTitle.emit({ inputNotEmpty: false, value: inputValue, changeEvent: true });
       }
     }
   }
 
+  /**
+   * input focus event
+   * used to set css classes for valid/invalid input 
+   */
   handleFocus() {
     this.isFocused = true;
   }
 
-    /**
+  /**
    * input blur event
    * responsible for switching CSS classes based on input validness,
    * @param event (Event)
@@ -64,9 +66,9 @@ export class InputComponent {
 
     if (id === 'firstName') {
       if (event.target.value.length > 0) {
-        this.swapTitle.emit({inputNotEmpty: true, value: event.target.value});
+        this.swapTitle.emit({ inputNotEmpty: true, value: event.target.value });
       } else {
-        this.swapTitle.emit({inputNotEmpty: false, value: event.target.value});
+        this.swapTitle.emit({ inputNotEmpty: false, value: event.target.value });
       }
     }
 
@@ -84,13 +86,11 @@ export class InputComponent {
         break;
     }
 
-    if (this.isValid) {
-      const data = {
-        id: id,
-        value: event.target.value,
-      }
-      
-      this.checkIfValid.emit(data);
+    const data = {
+      id: id,
+      value: event.target.value,
     }
+
+    this.checkIfValid.emit(data);
   }
 }

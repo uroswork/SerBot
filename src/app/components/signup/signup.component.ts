@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormValidator } from '../../utils/formValidator';
 import { UserData } from '../../models/userData';
 
 @Component({
@@ -7,12 +8,13 @@ import { UserData } from '../../models/userData';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
+
 export class SignUpComponent {
+  errorMessage: string;
   title: string = 'create an account!';
-  errorMessage: string = '';
-  showError: boolean = false;
-  titleAlternative: string = '';
-  shouldChangeTitle: boolean = false;
+  titleAlternative: string;
+  shouldChangeTitle: boolean;
+  showError: boolean;
   userData: UserData = {
     firstName: '',
     lastName: '',
@@ -21,8 +23,13 @@ export class SignUpComponent {
     confirmPassword: '',
   };
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private formValidator: FormValidator) { }
 
+  /**
+   * Called inside input component - onBlur method 
+   * There it validates it & checks if the input is value matches input type
+   * Here we just set it to userData object
+   */
   checkIfValid(data) {
     switch (data.id) {
       case 'firstName':
@@ -38,18 +45,18 @@ export class SignUpComponent {
         this.userData.password = data.value;
         break;
       case 'confirmPassword':
-       this.userData.confirmPassword = data.value;
+        this.userData.confirmPassword = data.value;
         break;
     }
   }
 
   /**
-   * Swapping   'create an account' with user's first name, once user submits first name.
+   * Swapping 'create an account' with user's first name, once user submits first name.
    * @param event (inputs length, and event calling this function)
    */
   swapTitle(event) {
-    if (event.inputNotEmpty === true) {
-      this.titleAlternative = `${ event.value.trim()}!`;
+    if (event.inputNotEmpty) {
+      this.titleAlternative = `${event.value.trim()}!`;
       if (!event.changeEvent) {
         this.shouldChangeTitle = true;
       }
@@ -58,32 +65,41 @@ export class SignUpComponent {
     }
   }
 
-   /**
-   * Responsible for showing error component, and hiding it after 2 seconds.
-   * @param message (error message to show)
-   */
+  /**
+  * Responsible for showing error component, and hiding it after 3 seconds.
+  * @param message (error message to show)
+  */
   handleError(message) {
     this.errorMessage = message;
     this.showError = true;
 
     setTimeout(() => {
       this.showError = false;
-    }, 2000);
+    }, 3000);
   }
 
-   /**
-   * Handling click on submit button, checking if account can be created, and calling handleError if needed.
-   */
+  /**
+  * Handles click on submit button.
+  * Checks if user data is correct & account can be created
+  * Calls handleError if needed.
+  */
   createAccountClick() {
-    event.preventDefault();
     if (this.userData.firstName && this.userData.lastName && this.userData.email && this.userData.password && this.userData.confirmPassword) {
-      if (this.userData.password === this.userData.confirmPassword) {
-        this.router.navigateByUrl('/setup');
+      if (this.formValidator.validateMail(this.userData.email)) {
+        if (this.formValidator.validatePassword(this.userData.password) && this.formValidator.validatePassword(this.userData.confirmPassword)) {
+          if (this.userData.password === this.userData.confirmPassword) {
+            this.router.navigateByUrl('/setup');
+          } else {
+            this.handleError('Passwords do not match.');
+          }
+        } else {
+          this.handleError('Password needs to be at least 8 characters long.');
+        }
       } else {
-        this.handleError('Passwords do not match.');
+        this.handleError('Please enter a valid email.');
       }
     } else {
-      this.handleError('Please fill all fields.');
+      this.handleError('All fields are required.');
     }
   }
 }

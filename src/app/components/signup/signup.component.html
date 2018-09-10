@@ -1,24 +1,30 @@
 <app-error-handler [showError]="showError" [errorMessage]="errorMessage"></app-error-handler>
 <form class="Serbot">
-        <div class="Serbot-form">
-            <div class="Serbot-title">
-                <span>Hello, </span>
-                <div class="Serbot-title-inner">
-                    <span [ngClass]="{'Serbot-title--span': true, 'Serbot-title--spanTranslated': shouldChangeTitle === true}">{{ title }}</span>
-                    <span [ngClass]="{'Serbot-title--spanAlternative': true, 'Serbot-title--spanAlternativeTranslated': shouldChangeTitle === true}">{{ titleAlternative }}</span>
-                </div>
-            </div>
-            <div class="Serbot-form-inner">
-                <app-input (swapTitle)="swapTitle($event)" (checkIfValid)="checkIfValid($event)" label="First Name" inputId="firstName" type="text"></app-input>
-                <app-input (checkIfValid)="checkIfValid($event)" label="Last Name" inputId="lastName" type="text"></app-input>
-                <app-input (checkIfValid)="checkIfValid($event)" label="Email" inputId="email" type="text"></app-input>
-                <app-input (checkIfValid)="checkIfValid($event)" label="Password" inputId="password" type="password"></app-input>
-                <app-input (checkIfValid)="checkIfValid($event)" label="Confirm Password" inputId="confirmPassword" type="password"></app-input>
+    <div class="Serbot-form">
+        <div class="Serbot-title">
+            <span>Hello, </span>
+            <div class="Serbot-title-inner">
+                <span class="Serbot-title--span" [ngClass]="{'Serbot-title--spanTranslated': shouldChangeTitle}">
+                    {{ title }}
+                </span>
+                <span class="Serbot-title--spanAlternative" [ngClass]="{'Serbot-title--spanAlternativeTranslated': shouldChangeTitle}">
+                    {{ titleAlternative }}
+                </span>
             </div>
         </div>
-        <button (click)="createAccountClick($event)" class="Serbot-CTA">
-            <div class="Serbot-CTA-inner">
-                <app-arrow></app-arrow>
-            </div>
-        </button>
-    </form>
+        <div class="Serbot-form-inner">
+            <app-input (swapTitle)="swapTitle($event)" (checkIfValid)="checkIfValid($event)" label="First Name" inputId="firstName"
+                type="text">
+            </app-input>
+            <app-input (checkIfValid)="checkIfValid($event)" label="Last Name" inputId="lastName" type="text"></app-input>
+            <app-input (checkIfValid)="checkIfValid($event)" label="Email" inputId="email" type="text"></app-input>
+            <app-input (checkIfValid)="checkIfValid($event)" label="Password" inputId="password" type="password"></app-input>
+            <app-input (checkIfValid)="checkIfValid($event)" label="Confirm Password" inputId="confirmPassword" type="password"></app-input>
+        </div>
+    </div>
+    <button (click)="createAccountClick($event)" class="Serbot-CTA">
+        <div class="Serbot-CTA-inner">
+            <app-arrow></app-arrow>
+        </div>
+    </button>
+</form>
