@@ -22,10 +22,10 @@
             <app-input (checkIfValid)="checkIfValid($event)" *ngIf="isSignUp" label="Confirm Password" inputId="confirmPassword" type="password"></app-input>
         </div>
         <div class="Serbot-message" *ngIf="isSignUp">
-          Go back to<button class="Serbot-message--button" (click)="goToSignUpForm($event)">login.</button>
+          Go back to<button class="Serbot-message--button" (click)="toggleForm($event)">login.</button>
         </div>
         <div class="Serbot-message" *ngIf="!isSignUp">
-          Don't have an account? Click<button class="Serbot-message--button" (click)="goToSignUpForm($event)">here</button>to sign up!
+          Don't have an account? Click<button class="Serbot-message--button" (click)="toggleForm($event)">here</button>to sign up!
         </div>
     </div>
     <button (click)="clickHandler($event)" class="Serbot-CTA">

@@ -17,6 +17,8 @@ export class SelectMembersTableComponent {
   addNameValid: boolean = false;
   addMailValid: boolean = false;
   addTitleValid: boolean = false;
+  @Input() questionStep: boolean;
+  @Input() items: Array<{}>;
   showAddNewMember: boolean = false;
   noResultsMessage: string = 'Sorry, I found no one.';
   isSelected: Array<{}> = [];
@@ -25,89 +27,7 @@ export class SelectMembersTableComponent {
   firstNamelastNameValue: string;
   emailValue: string;
   titleValue: string;
-  members: Array<{
-    name: string, position: string}> = [
-    {
-      name: 'Nemanja Nićiforović',
-      position: 'Technical Director',
-    },
-    {
-      name: 'Stanko Tadić',
-      position: 'Technical Director',
-    },
-    {
-      name: 'Miloš Pavlićević',
-      position: 'Lead Developer',
-    },
-    {
-      name: 'Marko Stanković',
-      position: 'Senior Developer',
-    },
-    {
-      name: 'Marko Nićiforović',
-      position: 'Senior Developer',
-    },
-    {
-      name: 'Marko Šutija',
-      position: 'Senior Developer',
-    },
-    {
-      name: 'Marko Marković',
-      position: 'Developer',
-    },
-    {
-      name: 'Uroš Tomović',
-      position: 'Developer',
-    },
-    {
-      name: 'Srdjan Kuzmanović',
-      position: 'Developer',
-    },
-    {
-      name: 'Srdjan Seferović',
-      position: 'Developer',
-    },
-    {
-      name: 'Radoš Pavlićević',
-      position: 'Developer',
-    },
-    {
-      name: 'Nikola Borisić',
-      position: 'Developer',
-    },
-    {
-      name: 'Djordje Ribać',
-      position: 'Developer',
-    },
-    {
-      name: 'Vojin Šoškić',
-      position: 'Developer',
-    },
-    {
-      name: 'Tijana Jelić',
-      position: 'QA',
-    },
-    {
-      name: 'Sara Vukobrat',
-      position: 'QA',
-    },
-    {
-      name: 'Katarina Živanović',
-      position: 'QA',
-    },
-    {
-      name: 'Relja Jovanović',
-      position: 'QA',
-    },
-    {
-      name: 'Tamara Čvorović',
-      position: 'QA',
-    },
-    {
-      name: 'Bojan Jevtić',
-      position: 'QA',
-    },
-  ];
+  questionValue: string;
 
   constructor(private formValidator: FormValidator) { }
 
@@ -132,7 +52,7 @@ export class SelectMembersTableComponent {
    * @param key (index of each member)
    */
   handleButtonClick(event, key) {
-    const fromWhichArrayToPush = this.isFiltering ? this.filteredMembers[key] : this.members[key];
+    const fromWhichArrayToPush = this.isFiltering && !this.questionStep ? this.filteredMembers[key] : this.items[key];
     if (this.isSelected.includes(fromWhichArrayToPush)) {
       const index = this.isSelected.indexOf(fromWhichArrayToPush);
       if (index > -1) {
@@ -152,7 +72,7 @@ export class SelectMembersTableComponent {
     const isTyping = inputValue.length > 0;
     if (isTyping) {
       this.isFiltering = true;
-      const results = this.members.filter(user => user.name.toLowerCase().includes(value));
+      const results = this.items.filter(user => user.name.toLowerCase().includes(value));
       const hasResults = results.length > 0;
       this.filteredMembers = results;
       if (hasResults) {
@@ -176,6 +96,7 @@ export class SelectMembersTableComponent {
     this.firstNamelastNameValue = '';
     this.emailValue = '';
     this.titleValue = '';
+    this.question = '';
   }
 
   handleOnBlur(event, id) {
@@ -189,12 +110,15 @@ export class SelectMembersTableComponent {
       case 'titleAdd':
         this.addTitleValid = this.formValidator.validateName(event.target.value);
         break;
+      case 'questionAdd':
+        this.addQuestionValid = this.formValidator.validateName(event.target.value);
+        break;
     }
   }
 
   handleCtaClick() {
-    if (this.addNameValid && this.addMailValid && this.addTitleValid) {
-      this.members.push({
+    if (this.addNameValid && this.addMailValid && this.addTitleValid && !this.questionStep) {
+      this.items.push({
         name: this.firstNamelastNameValue,
         position: this.titleValue,
       });
@@ -203,8 +127,18 @@ export class SelectMembersTableComponent {
       this.firstNamelastNameValue = '';
       this.emailValue = '';
       this.titleValue = '';
+    } else if (this.questionStep && this.addQuestionValid) {
+      this.items.push({
+        question: this.questionValue,
+      });
+      this.showAddNewMember = false;
+      this.questionValue = '';
     } else {
       this.handleErrors.emit({message: 'Please fill all fields correctly.'});
     }
+  }
+
+  finishSetup() {
+      this.router.navigateByUrl('/project');
   }
 }

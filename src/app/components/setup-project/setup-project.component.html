@@ -26,7 +26,16 @@
         <app-animated-text (checkIfFinished)="checkIfFinished($event)" [currentStep]="currentStep" [text]="stepFiveText" [shouldStart]="startStepFive"></app-animated-text>
       </div>
       <div [ngClass]="{'Serbot-setup-tableHidden': true, 'Serbot-setup-table': showTable}">
-        <app-select-members-table (handleErrors)=(handleErrors($event)) [allowTabbing]="currentStep === 5"></app-select-members-table>
+        <app-select-members-table [items]="members" (handleErrors)=(handleErrors($event)) [allowTabbing]="currentStep === 5"></app-select-members-table>
+      </div>
+  </div>
+  <div [ngClass]="{'Serbot-setup-stepWrapper': true, 'Serbot-setup-stepSix': true, 'Serbot-setup-stepSix--active': currentStep === 6}">
+      <app-error-handler [isInverted]="true" [showError]="showError" [errorMessage]="errorMessage"></app-error-handler>
+      <div class="Serbot-setup-stepSix--paddingFix">
+        <app-animated-text (checkIfFinished)="checkIfFinished($event)" [currentStep]="currentStep" [text]="stepSixText" [shouldStart]="startStepSix"></app-animated-text>
+      </div>
+      <div [ngClass]="{'Serbot-setup-tableHidden': true, 'Serbot-setup-table': showQuestionsTable}">
+        <app-select-members-table [items]="questions" [questionStep]="currentStep === 6" (handleErrors)=(handleErrors($event)) [allowTabbing]="currentStep === 6"></app-select-members-table>
       </div>
   </div>
   <button [disabled]="disableCTA" tabindex="{{ showCTA ? 0 : -1 }}" (click)="handleClick($event)" [ngClass]="{'Serbot-CTA': true, 'Serbot-CTA--visible': showCTA}">

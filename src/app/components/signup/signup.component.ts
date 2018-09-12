@@ -83,7 +83,7 @@ export class SignUpComponent {
   * Handles click that toggles sign up form.
   * Calls handleError if needed.
   */
-  goToSignUpForm() {
+  toggleForm() {
     this.isSignUp = !this.isSignUp;
     this.title = this.isSignUp ? 'please create an account!' : 'please login to proceed!';
   }

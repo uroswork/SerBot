@@ -20,7 +20,7 @@
         outline: none;
     }
     @media (min-width: 768px) {
-        right: 30px;   
+        right: 30px;
     }
 }
 
@@ -86,7 +86,22 @@
     padding: 0;
 }
 
+.Serbot-setup-stepSix--active {
+    transform: translateY(-500%);
+    padding: 0;
+}
+
 .Serbot-setup-stepFive--paddingFix {
+    padding: 20px;
+    @media (min-width: 1024px) {
+        padding: 20px 100px;
+    }
+    @media (min-width: 1280px) {
+        padding: 50px 100px;
+    }
+}
+
+.Serbot-setup-stepSix--paddingFix {
     padding: 20px;
     @media (min-width: 1024px) {
         padding: 20px 100px;

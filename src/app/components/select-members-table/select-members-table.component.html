@@ -1,31 +1,31 @@
 <div class="Serbot-selectMembers">
   <div class="Serbot-selectMembers-table" *ngIf="isFiltering">
-    <p *ngIf="showNoResults" class="Serbot-selectMembers-noResults">{{  noResultsMessage }}</p>
-    <button tabindex="{{ allowTabbing ? 0 : -1 }}" (click)="handleButtonClick($event, key)" [ngClass]="{'Serbot-selectMembers-member-button': true, 'Serbot-selectMembers-member-button--last':  filteredMembers.length > 6 && key === filteredMembers.length - 1}" *ngFor="let member of filteredMembers; let key = index">
+    <p *ngIf="showNoResults" class="Serbot-selectMembers-noResults">{{ noResultsMessage }}</p>
+    <button tabindex="{{ allowTabbing ? 0 : -1 }}" (click)="handleButtonClick($event, key)" [ngClass]="{'Serbot-selectMembers-member-button': true, 'Serbot-selectMembers-member-button--last':  filteredMembers.length > 6 && key === filteredMembers.length - 1}" *ngFor="let item of filteredMembers; let key = index">
       <div class="Serbot-selectMembers-member">
-        <span>{{ member.name }} // {{ member.position }}</span>
-        <img *ngIf="isSelected.includes(member)" src="../../../assets/images/checkbox.png" class="Serbot-selectMembers-checkBox" />
-        <img *ngIf="isSelected.includes(member)" src="../../../assets/images/checkboxHover.png" class="Serbot-selectMembers-checkBoxHover" />
+        <span>{{ questionStep ? item.question : item.name // item.position }}</span>
+        <img *ngIf="isSelected.includes(item)" src="../../../assets/images/checkbox.png" class="Serbot-selectMembers-checkBox" />
+        <img *ngIf="isSelected.includes(item)" src="../../../assets/images/checkboxHover.png" class="Serbot-selectMembers-checkBoxHover" />
       </div>
     </button>
   </div>
   <div class="Serbot-selectMembers-table" *ngIf="!isFiltering">
-      <button tabindex="{{ allowTabbing ? 0 : -1 }}" (click)="handleButtonClick($event, key)" [ngClass]="{'Serbot-selectMembers-member-button': true, 'Serbot-selectMembers-member-button--last': key === members.length - 1}" *ngFor="let member of members; let key = index">
+      <button tabindex="{{ allowTabbing ? 0 : -1 }}" (click)="handleButtonClick($event, key)" [ngClass]="{'Serbot-selectMembers-member-button': true, 'Serbot-selectMembers-member-button--last': key === items.length - 1}" *ngFor="let item of items; let key = index">
         <div class="Serbot-selectMembers-member">
-          <span>{{ member.name }} // {{ member.position }}</span>
-          <img *ngIf="isSelected.includes(member)" src="../../../assets/images/checkbox.png" class="Serbot-selectMembers-checkBox" />
-          <img *ngIf="isSelected.includes(member)" src="../../../assets/images/checkboxHover.png" class="Serbot-selectMembers-checkBoxHover" />
+          <span>{{ questionStep ? item.question : item.name // item.position }}</span>
+          <img *ngIf="isSelected.includes(item)" src="../../../assets/images/checkbox.png" class="Serbot-selectMembers-checkBox" />
+          <img *ngIf="isSelected.includes(item)" src="../../../assets/images/checkboxHover.png" class="Serbot-selectMembers-checkBoxHover" />
         </div>
       </button>
     </div>
   <div class="Serbot-selectMembers-additional">
     <div class="Serbot-selectMembers-searchDiv">
-        <button tabindex="{{ allowTabbing ? 0 : -1 }}" (click)="handleSearchClick()">Search for a member</button>
+        <button *ngIf="!questionStep" tabindex="{{ allowTabbing ? 0 : -1 }}" (click)="handleSearchClick()">Search for a member</button>
         <div [ngClass]="{'Serbot-selectMembers-search': true, 'Serbot-selectMembers-searchVisible': searchVisible}">
             <input #searchForAMember tabindex="{{ allowTabbing ? 0 : -1 }}" type='text' [(ngModel)]="searchMembers" (ngModelChange)="handleChange($event)" class="Serbot-selectMembers-searchInput" />
         </div>
     </div>
-    <button tabindex="{{ allowTabbing ? 0 : -1 }}" (click)="handleAddNewClick()">Add new member</button>
+    <button tabindex="{{ allowTabbing ? 0 : -1 }}" (click)="handleAddNewClick()">Add a new {{ questionStep ? "question" : "member" }}</button>
   </div>
   <div [ngClass]="{'Serbot-selectMembers-searchMobile': true, 'Serbot-selectMembers-searchMobile--visible': searchVisible}">
     <div class="Serbot-selectMembers-searchMobileDiv">
@@ -37,15 +37,18 @@
   </div>
   <div [ngClass]="{'Serbot-selectMembers-add': true, 'Serbot-selectMembers-add--visible': showAddNewMember}">
       <div class="Serbot-selectMembers-add-topDiv">
-        <p>Add new member</p>
+        <p>Add new {{ questionStep ? "question" : "member" }}</p>
         <button class="Serbot-selectMembers-add-button" tabindex="{{ allowTabbing && showAddNewMember ? 0 : -1 }}" (click)="handleCloseClick($event)">
           <img class="Serbot-selectMembers-add-close" src="../../../assets/images/close.png" />
         </button>
       </div>
-      <div class="Serbot-selectMembers-add-inputs">
+      <div class="Serbot-selectMembers-add-inputs" *ngIf="!questionStep">
         <input tabindex="{{ allowTabbing && showAddNewMember ? 0 : -1 }}" type='text' [(ngModel)]="firstNamelastNameValue" (blur)="handleOnBlur($event, 'firstNameLastName')" placeholder="First Name Last Name" #firstLastNameAdd class="Serbot-selectMembers-add-input" />
         <input tabindex="{{ allowTabbing && showAddNewMember ? 0 : -1 }}" type='text' [(ngModel)]="emailValue" (blur)="handleOnBlur($event, 'emailAdd')" placeholder="Email" #emailAdd class="Serbot-selectMembers-add-input" />
         <input tabindex="{{ allowTabbing && showAddNewMember ? 0 : -1 }}" type='text' [(ngModel)]="titleValue" (blur)="handleOnBlur($event, 'titleAdd')" placeholder="Title" #titleAdd class="Serbot-selectMembers-add-input" />
+      </div>
+      <div class="Serbot-selectMembers-add-inputs" *ngIf="questionStep">
+        <input tabindex="{{ allowTabbing && showAddNewMember ? 0 : -1 }}" type='text' [(ngModel)]="questionValue" (blur)="handleOnBlur($event, 'questionAdd')" placeholder="Question" #questionAdd class="Serbot-selectMembers-add-input" />
       </div>
       <button tabindex="{{ allowTabbing && showAddNewMember && showCTA ? 0 : -1 }}" (click)="handleCtaClick($event)" class="Serbot-CTA">
         <app-arrow></app-arrow>
