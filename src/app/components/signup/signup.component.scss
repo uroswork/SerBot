@@ -10,7 +10,7 @@
         padding-left: 50px;
         flex-direction: row;
         justify-content: space-between;
-    }    
+    }
 }
 
 .Serbot-title {
@@ -121,4 +121,25 @@
 
 .Serbot-title--spanAlternative::first-letter {
     text-transform: uppercase;
+}
+
+.Serbot-message {
+    font-size: 20px;
+    margin-top: 40px;
+    color: gray;
+    @media (min-width: 768px) {
+        padding-left: 20px;
+        font-size: 25px;
+    }
+}
+
+.Serbot-message--button {
+    font-size: 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-decoration: underline;
+    @media (min-width: 768px) {
+        font-size: 25px;
+    }
 }

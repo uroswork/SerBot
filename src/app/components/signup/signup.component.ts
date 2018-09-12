@@ -10,8 +10,9 @@ import { UserData } from '../../models/userData';
 })
 
 export class SignUpComponent {
+  isSignUp: boolean = false;
   errorMessage: string;
-  title: string = 'create an account!';
+  title: string = 'please login to proceed!';
   titleAlternative: string;
   shouldChangeTitle: boolean;
   showError: boolean;
@@ -26,7 +27,7 @@ export class SignUpComponent {
   constructor(private router: Router, private formValidator: FormValidator) { }
 
   /**
-   * Called inside input component - onBlur method 
+   * Called inside input component - onBlur method
    * There it validates it & checks if the input is value matches input type
    * Here we just set it to userData object
    */
@@ -76,6 +77,44 @@ export class SignUpComponent {
     setTimeout(() => {
       this.showError = false;
     }, 3000);
+  }
+
+  /**
+  * Handles click that toggles sign up form.
+  * Calls handleError if needed.
+  */
+  goToSignUpForm() {
+    this.isSignUp = !this.isSignUp;
+    this.title = this.isSignUp ? 'please create an account!' : 'please login to proceed!';
+  }
+
+  clickHandler() {
+    if(this.isSignUp) {
+      this.createAccountClick();
+    } else {
+      this.loginClick();
+    }
+  }
+
+  /**
+  * Handles click on login button.
+  * Checks if user email and password is correct & login can be done
+  * Calls handleError if needed.
+  */
+  loginClick() {
+    if (this.userData.email && this.userData.password) {
+      if (this.formValidator.validateMail(this.userData.email)) {
+        if (this.formValidator.validatePassword(this.userData.password)) {
+          this.router.navigateByUrl('/setup');
+        } else {
+          this.handleError('Password is incorrect');
+        }
+      } else {
+        this.handleError('No user with this email found.');
+      }
+    } else {
+      this.handleError('Enter email and password to login.');
+    }
   }
 
   /**
