@@ -31,7 +31,7 @@
     }
 
     .Project-chartSvgCircle {
-        stroke: #daf36a;        
+        stroke: #daf36a;
     }
 
     .Project-chartDiv {
@@ -52,7 +52,7 @@
     }
 
     .Project-chartSvgCircle {
-        stroke: #fff;        
+        stroke: #fff;
     }
 
     .Project-chartDiv {
@@ -73,7 +73,7 @@
     }
 
     .Project-chartSvgCircle {
-        stroke: #989797;  
+        stroke: #989797;
     }
 
     .Project-chartDiv {
@@ -100,6 +100,7 @@
 .Project-main {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     @media (min-width: 768px) {
         flex-basis: 48%;
     }
@@ -384,4 +385,15 @@
 .Project-category-image {
     width: 20px;
     margin-left: 20px;
+}
+
+.Project-button-setup {
+  background: none;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  color: white;
+  margin-top: 40px;
 }

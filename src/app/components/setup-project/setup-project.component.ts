@@ -29,7 +29,7 @@ export class SetUpProjectComponent {
   showCTA: boolean = false;
   showTable: boolean = false;
   showQuestionsTable: boolean = false;
-  currentStep: number = 5;
+  currentStep: number = 1;
   errorMessage: string = '';
   showError: boolean = false;
   @ViewChild('projectName') projectName: ElementRef;

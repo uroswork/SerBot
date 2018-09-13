@@ -6,19 +6,19 @@
     'Project-wrapper--bad': getNumberOfPercentageString(projects[activeProject].chartPercentage) < 40}
   ">
     <div *ngIf="projects.length > 1" class="ProjectNumbers">
-      <button 
-        [disabled]="isSwitchingBetweenProjects" 
-        (click)="handleProjectChange('minus')" 
-        *ngIf="activeProject + 1 > 1" 
+      <button
+        [disabled]="isSwitchingBetweenProjects"
+        (click)="handleProjectChange('minus')"
+        *ngIf="activeProject + 1 > 1"
         class="ProjectNumbers-button"
       >view {{ projects[activeProject -1].name }}
       </button>
       <span>{{ activeProject + 1 }}</span>
       <span class="ProjectNumbers-length">/ {{ projects.length }}</span>
-      <button 
-        [disabled]="isSwitchingBetweenProjects" 
-        (click)="handleProjectChange('plus')" 
-        *ngIf="activeProject + 1 !== projects.length" 
+      <button
+        [disabled]="isSwitchingBetweenProjects"
+        (click)="handleProjectChange('plus')"
+        *ngIf="activeProject + 1 !== projects.length"
         class="ProjectNumbers-button"
       >view {{ projects[activeProject + 1].name }}
       </button>
@@ -28,6 +28,7 @@
         <h1 class="Project-title">{{ projects[activeProject].name }}</h1>
         <span class="Project-type">{{ projects[activeProject].type }}</span>
         <p class="Project-description">{{ projects[activeProject].description }}</p>
+        <button (click)="goToSetup()" class="Project-button-setup">Go to project settings</button>
       </div>
       <div class="Project-data">
         <div class="Project-chart">

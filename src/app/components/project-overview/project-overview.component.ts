@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-project-overview',
@@ -191,7 +192,7 @@ export class ProjectOverviewComponent implements OnInit {
     },
   ]
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     setTimeout(() => {
@@ -249,5 +250,9 @@ export class ProjectOverviewComponent implements OnInit {
         clearInterval(interval);
       }
     }, time);
+  }
+
+  goToSetup() {
+    this.router.navigateByUrl('/setup');
   }
 }
